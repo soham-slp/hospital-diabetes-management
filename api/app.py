@@ -6,6 +6,7 @@ from bcrypt_ext import bcrypt
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from error_handler.controller import error_bp
+from auth.controller import auth_bp
 
 def create_app():
     app = Flask(__name__)
@@ -23,5 +24,6 @@ def create_app():
     JWTManager(app)
     
     app.register_blueprint(error_bp)
+    app.register_blueprint(auth_bp, url_prefix="/api/auth")
     
     return app
