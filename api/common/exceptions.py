@@ -21,3 +21,9 @@ class ValidationException(CustomBaseException):
     def __init__(self, err: ValidationError):
         message = f"Error in validation: {json.dumps(err.messages)}"
         super().__init__(message, ExceptionType.VALIDATION, HTTPStatus.BAD_REQUEST)
+
+class AuthError(CustomBaseException):
+    def __init__(self, message: str, status: HTTPStatus):
+        message = f"Error in auth: { message }"
+        
+        super().__init__(message, ExceptionType.AUTH, status)
