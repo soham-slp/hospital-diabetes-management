@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from bcrypt_ext import bcrypt
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
+from error_handler.controller import error_bp
 
 def create_app():
     app = Flask(__name__)
@@ -20,5 +21,7 @@ def create_app():
     
     bcrypt.init_app(app)
     JWTManager(app)
+    
+    app.register_blueprint(error_bp)
     
     return app
