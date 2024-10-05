@@ -5,6 +5,7 @@
 ```bash
 export SQLALCHEMY_DATABASE_URI=sqlite:///test.db
 export JWT_SECRET_KEY=******
+export API_KEY=****
 ```
 
 **To run backend (in api/)**
