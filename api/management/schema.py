@@ -12,6 +12,7 @@ class PatientDataSchema(ma.SQLAlchemyAutoSchema):
         load_instance = True
         include_fk = True  # To include foreign keys if necessary
 
+    id = fields.Int(dump_only=True)
     patient_id = fields.Int(required=True)
     doctor_id = fields.Int(required=True)
     pregnancies = fields.Int(required=True)
@@ -51,3 +52,11 @@ class PatientDataSchema(ma.SQLAlchemyAutoSchema):
             diabetes_pedigree_function=data["diabetes_pedigree_function"],
             age=data["age"],
         )
+
+
+class UpdateTestSchema(ma.Schema):
+    class Meta:
+        pass
+
+    id = fields.Int(required=True)
+    diabetes_test = fields.Bool(required=True)
