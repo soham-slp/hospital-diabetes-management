@@ -9,7 +9,7 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         load_instance = False
         exclude = ("password_hash", "id")
 
-    name = ma.auto_field()
+    name = ma.auto_field()  # type: ignore
     email = fields.Email(required=True)
     password = fields.String(load_only=True, required=True)
     role = fields.Integer(required=False)
