@@ -8,9 +8,11 @@ from flask_jwt_extended import (
     create_access_token,
     get_csrf_token,
 )
-from auth.services import create_user, get_user, validate_password
+from auth.services import create_user, get_user, validate_password, validate_role
 from common.services import validate_schema
 from auth.schema import UserSchema
+from common.constants import UserRole
+from typing import Optional
 
 auth_bp = Blueprint("auth_bp", __name__)
 
@@ -22,10 +24,16 @@ def signup():
 
     validated_data = validate_schema(data, schema)
 
+    API_KEY: Optional[str] = request.headers.get("X-API-KEY", None)
+    role: UserRole = data.get("role", UserRole.PATIENT)
+
+    validate_role(role, API_KEY)
+
     user = create_user(
         validated_data["password"],
         name=validated_data["name"],
         email=validated_data["email"],
+        role=role,
     )
 
     return jsonify(
