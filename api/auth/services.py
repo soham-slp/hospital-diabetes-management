@@ -62,3 +62,9 @@ def validate_role(role: UserRole, API_KEY: Optional[str]):
 
         case _:
             raise ValueError("Your role is invalid")
+
+
+def get_role(user_id: int) -> UserRole:
+    user = get_user(user_id)
+
+    return user.role

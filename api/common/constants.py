@@ -6,6 +6,8 @@ class ExceptionType(IntEnum):
     DB = 1
     VALIDATION = 2
     AUTH = 3
+    LOGICAL = 4
+    NOT_FOUND = 5
 
 
 class UserRole(IntEnum):

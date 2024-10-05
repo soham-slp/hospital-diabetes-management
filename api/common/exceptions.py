@@ -31,3 +31,13 @@ class AuthError(CustomBaseException):
         message = f"Error in auth: { message }"
 
         super().__init__(message, ExceptionType.AUTH, status)
+
+
+class LogicalException(CustomBaseException):
+    def __init__(self, message: str):
+        super().__init__(message, ExceptionType.LOGICAL, HTTPStatus.BAD_REQUEST)
+
+
+class ResourceNotFound(CustomBaseException):
+    def __init__(self, message: str):
+        super().__init__(message, ExceptionType.NOT_FOUND, HTTPStatus.NOT_FOUND)
